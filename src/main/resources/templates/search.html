@@ -38,7 +38,12 @@
 
   <!-- TODO #4 - Loop over the search results to display all job fields. -->
 
+    <div th:replace="~{fragments :: job_result_table}"></div>
+
 </div>
 
 </body>
 </html>
+
+<!--For the fragment to work properly in both files,
+the variables passed in by model.addAttribute() must use the same names. -->
