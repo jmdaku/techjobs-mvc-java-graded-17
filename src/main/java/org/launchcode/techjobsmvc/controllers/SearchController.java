@@ -30,23 +30,28 @@ public class SearchController {
 
     // TODO #3 - Create a handler to process a search request and render the updated search view.
 
-//    @PostMapping("/results")
-//    public String displaySearchResults(@ModelAttribute searchTerm, String searchType, Model model){
-//        List<Job> jobs= new ArrayList<>();
-//
-//        if(searchTerm.equals("all")) {
-//            model.addAttribute();
-//            jobs.add(JobData.findAll());
-//
-//        }else if(searchTerm.isEmpty()){
-//            JobData.findAll();
-//
-//        }else{
-//            JobData.findByColumnAndValue(searchTerm, searchType);
-//        }
-//        return "/search/results";
-//    }
+    @PostMapping("/results")
+    public String displaySearchResults(String searchType, String searchTerm, Model model){
+        ArrayList<Job> jobs = new ArrayList<>();
 
+        if (searchTerm.equals("all")) {
+//            jobs.add(JobData.findAll());
+            jobs = JobData.findAll();
+//            model.addAttribute(jobs);
+
+        } else if(searchTerm.isEmpty()){
+            jobs = JobData.findAll();
+
+        } else {
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
+        model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
+        model.addAttribute("columns", columnChoices);
+        model.addAttribute("jobs", jobs);
+        return "/search";
+    }
+
+//@ModelAttribute
 
 //    In order for these last two parameters to be properly passed in by Spring Boot, you need to use the correct annotation.
 //    Pass jobs into the search.html view via the model parameter.
