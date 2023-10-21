@@ -35,9 +35,7 @@ public class SearchController {
         ArrayList<Job> jobs = new ArrayList<>();
 
         if (searchTerm.equals("all")) {
-//            jobs.add(JobData.findAll());
-            jobs = JobData.findAll();
-//            model.addAttribute(jobs);
+              jobs = JobData.findAll();
 
         } else if(searchTerm.isEmpty()){
             jobs = JobData.findAll();
@@ -50,15 +48,6 @@ public class SearchController {
         model.addAttribute("jobs", jobs);
         return "/search";
     }
-
-//@ModelAttribute
-
-//    In order for these last two parameters to be properly passed in by Spring Boot, you need to use the correct annotation.
-//    Pass jobs into the search.html view via the model parameter.
-//    Pass ListController.columnChoices into the view, as the existing search handler does.
-
-
-
 
 }
 
